@@ -2,7 +2,7 @@
 
 # PROPOSED SOLUTION:
 # - treat a single array like memory slots.
-# - Then each stack is similiar to a linked list.
+# - Then each stack is similar to a linked list.
 #     - one mem slot (array position) is the data.
 #     - adjacent mem slot (array position) is the pointer to the previous item
 #     - to create the Filo aspect of a stack:
@@ -17,7 +17,7 @@
 
 # mem_array = []
 
-class stack(object):
+class Stack(object):
     # global mem_array
     mem_array = []
 
@@ -38,13 +38,13 @@ class stack(object):
 
 
 # create a stack.
-test_stack = stack()
+test_stack = Stack()
 test_stack.add("first_1")
 test_stack.add("second_1")
 print test_stack.mem_array
 
 # create another stack, and should build into single array
-test_stack_2 = stack()
+test_stack_2 = Stack()
 test_stack_2.add("first_2")
 test_stack_2.add("second_2")
 print test_stack_2.mem_array

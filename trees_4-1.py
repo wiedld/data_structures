@@ -1,6 +1,7 @@
 # PROBLEM
 
-# Implement a function to check if a tree is balanced For the purposes of this question, a balanced tree is defined to be a tree such that no two leaf nodes differ in distance from the root by more than one
+# Implement a function to check if a tree is balanced
+# For the purposes of this question, a balanced tree is defined to be a tree such that no two leaf nodes differ in distance from the root by more than one
 
 ################################################################
 
@@ -11,39 +12,33 @@
 # - state variable is needed to track levels.
 
 
-
-
 def is_bt_balanced(node):
     # get levels
-    minL, maxL = get_levels(node)
+    min_l, max_l = get_levels(node)
 
-    if (maxL-minL) > 1:
+    if (max_l-min_l) > 1:
         return False
-
     return True
 
 
-
-
-def get_levels(curr_node, level=1, minL=None, maxL=1):
+def get_levels(curr_node, level=1, min_l=None, max_l=1):
     # base case
-    if curr_node==None:
+    if curr_node is None:
         # define variables the first time
-        if minL==None:
-            minL = level
-        minL = min(minL, level)
-        maxL = max(maxL, level)
+        if min_l is None:
+            min_l = level
+        min_l = min(min_l, level)
+        max_l = max(max_l, level)
 
-        return minL, maxL
+        return min_l, max_l
 
     # update level for next recursive call
-    level+=1
+    level += 1
 
-    minL1, maxL1 = get_levels(curr_node.left, level, minL, maxL)
-    minL2, maxL2 = get_levels(curr_node.right, level, minL, maxL)
+    min_1, max_1 = get_levels(curr_node.left, level, min_l, max_l)
+    min_2, max_2 = get_levels(curr_node.right, level, min_l, max_l)
 
-    return min(minL1,minL2), max(maxL1,maxL2)
-
+    return min(min_1, min_2), max(max_1, max_2)
 
 
 # TEST

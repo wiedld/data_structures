@@ -26,25 +26,24 @@ class Node(object):
         self.right = right
         self.parent = parent
 
-
     def print_node(self):
-        if self.parent != None:
+        if self.parent is not None:
             return "data: %s, parent.data: %s" % (str(self.data), str(self.parent.data))
         return "data: %s, parent in None" % (str(self.data))
 
 
-def build_bst(arrayX, curr_node=Node()):
+def build_bst(array_x, curr_node=Node()):
     # base case.  midpt math works with len(1), midpt = [0] index
-    if len(arrayX) == 0:
+    if len(array_x) == 0:
         return
 
-    midpt = len(arrayX)/2
-    curr_node.data = arrayX[midpt]
+    midpt = len(array_x)/2
+    curr_node.data = array_x[midpt]
 
     print curr_node.data
     print curr_node.print_node()
 
-    left_array, right_array = arrayX[:midpt], arrayX[(midpt+1):]
+    left_array, right_array = array_x[:midpt], array_x[(midpt+1):]
 
     if len(left_array) > 0:
         curr_node.left = Node(curr_node)
@@ -53,7 +52,7 @@ def build_bst(arrayX, curr_node=Node()):
         curr_node.right = Node(curr_node)
         build_bst(right_array, curr_node.right)
 
-test = [1,2,3,4,5,6,7]
+test = [1, 2, 3, 4, 5, 6, 7]
 build_bst(test)
 
 
