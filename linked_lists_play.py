@@ -6,16 +6,15 @@ class Node(object):
         self.previous = previous
 
     def set_previous(self, previous=None):
-        curr_node = self
-        curr_node.previous = previous
+        self.previous = previous
         # base case
-        if curr_node.next is None:
+        if self.next is None:
             return
         # update state
-        prev_pointer = curr_node
-        curr_node = curr_node.next
+        prev_pointer = self
+        next_node = self.next
         # recursive call
-        curr_node.set_previous(prev_pointer)
+        next_node.set_previous(prev_pointer)
 
     def print_nodes_fwd(self):
         curr_node = self
