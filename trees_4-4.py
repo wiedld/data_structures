@@ -39,35 +39,46 @@ class LLnode(object):
 
 nodeC4 = Node("C4")
 nodeC3 = Node("C3")
-# nodeC2 = Node("C2")
+nodeC2 = Node("C2")
 nodeC1 = Node("C1")
 nodeB2 = Node("B2", nodeC3, nodeC4)
-nodeB1 = Node("B1", nodeC1)
+nodeB1 = Node("B1", nodeC1, nodeC2)
 nodeA = Node("A", nodeB1, nodeB2)
 
 
-import Queue
 
 def bt_into_ll_per_level(node):
-    q = Queue.Queue()
-    q.put(node)
-    ll_node = LLnode()
+    q = []
+    q.append(node)
+    q.append("end")
     result = []
+    ll_node = LLnode()
     result.append(ll_node)
 
-    while not q.empty():
-        curr_node = q.get()
-        # print "current:", curr_node.data
+    while q[0:2] != ["end"]:
+        curr_node = q.pop(0)
 
-        ll_node.next = LLnode(curr_node.data)
-        ll_node = ll_node.next
+        # creating new ll, per level
+        if curr_node == "end":
+            ll_node = LLnode()
+            result.append(ll_node)
+            q.append("end")
 
-        if curr_node.left is not None:
-            q.put(curr_node.left)
-        if curr_node.right is not None:
-            q.put(curr_node.right)
+        # when not creating new level's ll
+        else:
+            ll_node.next = LLnode(curr_node.data)
+            ll_node = ll_node.next
+
+            if curr_node.left is not None:
+                q.append(curr_node.left)
+            if curr_node.right is not None:
+                q.append(curr_node.right)
 
     return result
 
 
-print bt_into_ll_per_level(nodeA)[0].print_nodes()
+list_of_ll = bt_into_ll_per_level(nodeA)\
+
+for each_ll in list_of_ll:
+    each_ll.print_nodes()
+
