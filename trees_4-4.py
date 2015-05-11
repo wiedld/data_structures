@@ -16,6 +16,7 @@
 #
 ######################################################
 
+
 class Node(object):
     def __init__(self, data=None, left=None, right=None):
         self.data = data
@@ -30,10 +31,9 @@ class LLnode(object):
 
     def print_nodes(self):
         current = self
-        if current.next is None:
-            print current.data
-            return
         print current.data
+        if current.next is None:
+            return
         current.next.print_nodes()
 
 
@@ -46,11 +46,8 @@ nodeB1 = Node("B1", nodeC1, nodeC2)
 nodeA = Node("A", nodeB1, nodeB2)
 
 
-
 def bt_into_ll_per_level(node):
-    q = []
-    q.append(node)
-    q.append("end")
+    q = [node, "end"]
     result = []
     ll_node = LLnode()
     result.append(ll_node)
